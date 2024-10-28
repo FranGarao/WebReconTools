@@ -1,0 +1,6 @@
+install amass
+install ffuf
+install owasp zap (zaproxy)
+
+
+chequear si aplicar chmod +
