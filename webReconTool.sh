@@ -116,23 +116,21 @@ echo "Installing dnsx"
 go install -v github.com/projectdiscovery/dnsx/cmd/dnsx@latest
 
 echo "Installing dirsearch"
-# go install -v github.com/projectdiscovery/dirsearch/cmd/dirsearch@latest
+go install -v github.com/projectdiscovery/dirsearch/cmd/dirsearch@latest
 
 echo "Installing gospider"
-# go install -v github.com/jaeles-project/gospider@latest
+GO111MODULE=on go install github.com/jaeles-project/gospider@latest
 
 echo "Installing gf"
-# go install -v github.com/tomnomnom/gf@latest
+go get -u github.com/tomnomnom/gf
+#CHECK THIS: echo 'source $GOPATH/src/github.com/tomnomnom/gf/gf-completion.bash' >> ~/.bashrc
 
 echo "Installing gf-patterns"
-# go install -v github.com/tomnomnom/gf@latest
-
-echo "Installing gospider"
-# go install -v github.com/jaeles-project/gospider@latest
-
-
-
-
+go install github.com/tomnomnom/waybackurls@latest
+go install github.com/tomnomnom/gf@latest
+#CHECK THIS: echo 'source $GOPATH/pkg/mod/github.com/tomnomnom/gf@v0.0.0-20200618134122-dcd4c361f9f5/gf-completion.bash' >> ~/.bashrc
+mkdir .gf
+cp -r $GOPATH/pkg/mod/github.com/tomnomnom/gf@v0.0.0-20200618134122-dcd4c361f9f5/examples ~/.gf
 #OWASP ZAP (Zaproxy)
 #SQLMAP
 #TAR o ZIP https://github.com/sqlmapproject/sqlmap/tarbal/master
