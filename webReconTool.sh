@@ -1,139 +1,100 @@
-echo "Updating System..."
-sud apt update && sudo apt upgrade -y
+sudo apt update && sudo apt upgrade && sudo apt install golang-go
+echo 'export PATH=$PATH:$HOME/go/bin' >> ~/.zshrc && source ~/.zshrc
+echo 'export PATH=$PATH:$HOME/.local/bin' >> ~/.zshrc && source ~/.zshrc
 
-#Create Tools Dir
-mkdir Web_Recon_Tools
-cd Web_Recon_Tools
+mkdir WebReconTools && cd WebReconTools
+sudo apt install python3-venv -y
 
-echo "INSTALLING SUBDOMAIN TOOLS" #TODO: Create more echos for all categories
-
-#SUBFINDER
-echo "Installing subfinder"
-sudo apt install golang-go
-go install -v github.com/projectdiscovery/subfinder/v2/cmd/subfinder@latest
-
-#N0KOVO_SUBDOMAINS
-echo "Installing n0kovo_subdomains"
-git clone https://github.com/n0kovo/n0kovo_subdomains.git
-
-#AMASS
-echo "Installing amass"
-sudo snap install amass
-
-#ASSETFINDER
-echo "Installing assetfinder"
-#$GOPATH/bin in your $PATH
-go get -u github.com/tomnomnom/assetfinder
-
-
-#WAYBACKURLS
-echo "Installing waybackurls"
-go install github.com/tomnomnom/waybackurls@latest
-
-#HTTPX
-echo "Installing httpx"
-go install -v github.com/projectdiscovery/httpx/cmd/httpx@latest
-
-#NUCLEI
-echo "Installing nuclei"
-go install -v github.com/projectdiscovery/nuclei/v2/cmd/nuclei@latest
-
-#ONEFORALL
-echo "Installing OneForAll"
-git clone https://github.com/shmilylty/OneForAll.git
-cd OneForAll
-pip install -r requirements.txt
-cd ../
-
-#SUBZY
-echo "Installing subzy"
-#If $GOBIN and $GOPATH are properly set, execute the program as: subzy --help
-go install -v github.com/PentestPad/subzy@latest
-
-#ARJUN
-pip3 install arjun || python3 setup.py install
-
-#HTTPX
-go install -v github.com/projectdiscovery/httpx/cmd/httpx@latest
-
-#KATANA
+#katana
 CGO_ENABLED=1 go install github.com/projectdiscovery/katana/cmd/katana@latest
 
-#LINKFINDER
-git clone https://github.com/GerbenJavado/LinkFinder.git
-cd LinkFinder
-python setup.py install
-pip3 install -r requirements.txt
+#subfinder
+go install -v github.com/projectdiscovery/subfinder/v2/cmd/subfinder@latest
 
-#WFUZZ
-pip install wfuzz
+#n0kovo subdomains
+git clone https://github.com/n0kovo/n0kovo_subdomains.git
 
-#FFUF
-go install github.com/ffuf/ffuf/v2@latest
+#amass 
+go install -v github.com/owasp-amass/amass/v4/...@master
 
-#GOBUSTER
-sudo apt install gobuster
+#assetfinder
+go install github.com/tomnomnom/assetfinder@latest 
 
-#SUBLIST3R
-git clone https://github.com/aboul3la/Sublist3r.git
-cd Sublist3r
-sudo pip install -r requirements.txt
-sudo pip install requests
-sudo apt-get install python-dnspython
-sudo apt-get install python-argparse
-cd ../
-
-#NUCLEI
-go install -v github.com/projectdiscovery/nuclei/v3/cmd/nuclei@latest
-
-
-#XSSVIBES
-git clone https://github.com/faiyazahmad07/xss_vibes
-pip3 install -r requirements 
-cd xss_vibes
-main.py file
-cd ../
-
-#SOCIALHUNTER
-go install github.com/utkusen/socialhunter@latest
-
-#NIKTO
-git clone https://github.com/sullo/nikto
-
-echo "Installing subbrute"
-go install github.com/projectdiscovery/subbrute/cmd/subbrute@latest
-
-echo "Installing httprobe"
-go install github.com/tomnomnom/httprobe@latest
-
-echo "Installing unfurl"
-go install github.com/tomnomnom/unfurl@latest
-
-echo "Installing naabu"
-go install -v github.com/projectdiscovery/naabu/v2/cmd/naabu@latest
-
-echo "Installing dnsx"
-go install -v github.com/projectdiscovery/dnsx/cmd/dnsx@latest
-
-echo "Installing dirsearch"
-go install -v github.com/projectdiscovery/dirsearch/cmd/dirsearch@latest
-
-echo "Installing gospider"
+#gospider
 GO111MODULE=on go install github.com/jaeles-project/gospider@latest
 
-echo "Installing gf"
-go get -u github.com/tomnomnom/gf
-#CHECK THIS: echo 'source $GOPATH/src/github.com/tomnomnom/gf/gf-completion.bash' >> ~/.bashrc
+#dnsx 
+go install -v github.com/projectdiscovery/dnsx/cmd/dnsx@latest
 
-echo "Installing gf-patterns"
+#naabu
+sudo apt install -y libpcap-dev && go install -v github.com/projectdiscovery/naabu/v2/cmd/naabu@latest
+
+#subbrute
+
+#httprobe
+go install github.com/tomnomnom/httprobe@latest
+
+#unfurl
+go install github.com/tomnomnom/unfurl@latest
+
+#nikto
+git clone https://github.com/sullo/nikto && cd nikto/program && chmod +x nikto.pl && cd ../../ 
+
+#socialHunter
+mkdir socialHunter && cd socialHunter && wget https://github.com/utkusen/socialhunter/releases/download/v0.1.1/socialhunter_0.1.1_Linux_amd64.tar.gz
+tar xzvf socialhunter_0.1.1_Linux_amd64.tar.gz
+rm socialhunter_0.1.1_Linux_amd64.tar.gz 
+cd ../
+
+#xss_vibes
+git clone https://github.com/faiyazahmad07/xss_vibes && cd xss_vibes && pip3 install -r requirements && cd ../
+
+#sublist3r
+sudo apt-get install sublist3r
+
+# #sublist3r
+# git clone https://github.com/aboul3la/Sublist3r.git 
+# cd Sublist3r
+# sudo pip install -r requirements.txt  
+# sudo apt-get install python-requests
+# sudo apt-get install python-dnspython 
+# sudo apt-get install python-argparse
+# cd ../
+
+#gobuster
+sudo apt-get install gobuster
+
+#ffuf
+go install github.com/ffuf/ffuf/v2@latest
+
+#wfuzz
+pip install wfuzz
+
+#arjun 
+sudo apt-get install arjun
+
+#nuclei 
+go install -v github.com/projectdiscovery/nuclei/v3/cmd/nuclei@latest
+
+#httpx 
+go install -v github.com/projectdiscovery/httpx/cmd/httpx@latest
+
+#subzy
+go install -v github.com/PentestPad/subzy@latest
+
+#waybackurls 
 go install github.com/tomnomnom/waybackurls@latest
-go install github.com/tomnomnom/gf@latest
-#CHECK THIS: echo 'source $GOPATH/pkg/mod/github.com/tomnomnom/gf@v0.0.0-20200618134122-dcd4c361f9f5/gf-completion.bash' >> ~/.bashrc
-mkdir .gf
-cp -r $GOPATH/pkg/mod/github.com/tomnomnom/gf@v0.0.0-20200618134122-dcd4c361f9f5/examples ~/.gf
-#OWASP ZAP (Zaproxy)
-#SQLMAP
-#TAR o ZIP https://github.com/sqlmapproject/sqlmap/tarbal/master
 
-echo 'export PATH=$PATH:$(go env GOPATH)/bin' >> ~/.bashrc
-source ~/.bashrc
+
+#OneForAll
+#Filter-resolved
+#Sqlmap
+#OWASP ZAP
+#LinkFinder
+
+#TODO
+# sudo apt update && sudo apt upgrade -y
+# sudo apt install -y golang-go libpcap-dev gobuster python3-requests python3-dnspython python3-argparse
+
+# python3 -m venv WebReconTools/venv
+# source WebReconTools/venv/bin/activate
