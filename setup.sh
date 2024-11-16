@@ -85,6 +85,8 @@ go install -v github.com/PentestPad/subzy@latest
 #waybackurls 
 go install github.com/tomnomnom/waybackurls@latest
 
+echo "instalacion completada."
+
 
 #OneForAll
 #Filter-resolved
