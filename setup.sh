@@ -1,3 +1,5 @@
+#!/bin/bash
+
 sudo apt update && sudo apt upgrade && sudo apt install golang-go
 echo 'export PATH=$PATH:$HOME/go/bin' >> ~/.zshrc && source ~/.zshrc
 echo 'export PATH=$PATH:$HOME/.local/bin' >> ~/.zshrc && source ~/.zshrc
@@ -84,6 +86,10 @@ go install -v github.com/PentestPad/subzy@latest
 
 #waybackurls 
 go install github.com/tomnomnom/waybackurls@latest
+
+#para hackyng redes inalambricas WIFI
+sudo apt install aircrack-ng
+sudo apt install wifite
 
 echo "instalacion completada."
 
